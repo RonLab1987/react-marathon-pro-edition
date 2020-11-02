@@ -1,0 +1,13 @@
+@import "./variables";
+
+@mixin blur($name, $important: false) {
+  box-shadow: map-get($blurs, $name) if($important, !important, null);
+}
+
+@mixin background-color($name, $important: false) {
+  background-color: map-get($colors, $name) if($important, !important, null);
+}
+
+@mixin background-gradient($name, $important: false) {
+  background-color: map-get($gradients, $name) if($important, !important, null);
+}

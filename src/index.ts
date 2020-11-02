@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-import "./text-utils.scss";
-import "./size-utils.scss";
+import "normalize.css";
 
 ReactDOM.render(React.createElement(App), document.getElementById("root"));

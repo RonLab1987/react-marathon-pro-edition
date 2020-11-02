@@ -5,6 +5,9 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
   mode: process.env.NODE_ENV || "production",
   resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
     extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
   },
   entry: {
@@ -42,6 +45,13 @@ module.exports = {
           },
           "sass-loader",
         ],
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        issuer: {
+          test: /\.[tj]sx?$/,
+        },
+        use: ["@svgr/webpack"],
       },
     ],
   },
