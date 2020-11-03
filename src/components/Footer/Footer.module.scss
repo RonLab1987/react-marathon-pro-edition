@@ -1,0 +1,9 @@
+@import "../../styles/bootstrap";
+
+.footer {
+  padding: $gutter;
+}
+
+.container {
+  @include container;
+}

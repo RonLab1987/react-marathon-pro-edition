@@ -7,8 +7,10 @@ import s from "./Header.module.scss";
 
 const Header: React.FC = () => {
   return (
-    <header className={s.container}>
-      <Logo />
+    <header className={s.header}>
+      <div className={s.container}>
+        <Logo />
+      </div>
     </header>
   );
 };
