@@ -1,13 +1,21 @@
-import * as React from 'react'
-import cn from 'classnames'
+import React from "react";
 
-// @ts-ignore
-import s from './App.modules.scss'
+import "normalize.css";
+import "./styles/global.scss";
 
-export const App: React.FC = () => {
+import s from "./App.module.scss";
+
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+const App: React.FC = () => {
   return (
-    <div className={s.container}>
-      <h1 className={cn(s.greeting, 'text-center', 'fill-width')}>I'am App</h1>
+    <div className={s.app}>
+      <Header />
+      <div className={s.contentContainer} />
+      <Footer />
     </div>
-  )
-}
+  );
+};
+
+export default App;

@@ -1,0 +1,13 @@
+@import "../../styles/bootstrap";
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 96px;
+  @include shadow("16");
+  @include background-color("third");
+}
+
+.container {
+  @include container;
+}

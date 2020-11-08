@@ -1,0 +1,14 @@
+@import "./styles/bootstrap";
+
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  @include background-color("third");
+  @include background-gradient("third");
+}
+
+.contentContainer {
+  flex-grow: 1;
+}

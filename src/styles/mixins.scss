@@ -1,0 +1,22 @@
+@import "./variables";
+
+@mixin container {
+  width: 100%;
+  max-width: 1680px;
+  padding-right: $gutter;
+  padding-left: $gutter;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@mixin shadow($name, $important: false) {
+  box-shadow: map-get($shadows, $name) if($important, !important, null);
+}
+
+@mixin background-color($name, $important: false) {
+  background-color: map-get($colors, $name) if($important, !important, null);
+}
+
+@mixin background-gradient($name, $important: false) {
+  background: map-get($gradients, $name) if($important, !important, null);
+}
