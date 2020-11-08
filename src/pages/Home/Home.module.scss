@@ -1,0 +1,10 @@
+@import "../../styles/bootstrap";
+.root {
+  display: flex;
+}
+
+.left,
+.right {
+  width: 50%;
+  padding: $gutter;
+}
