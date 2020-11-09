@@ -1,15 +1,15 @@
 import React from "react";
 
-// @ts-ignore
-import Logo from "@/assets/Logo.svg";
+import { ReactComponent as Logo } from "./assets/Logo.svg";
 
 import s from "./Header.module.scss";
 
-const Header: React.FC = () => {
+const Header: React.FC = ({ children }) => {
   return (
     <header className={s.header}>
       <div className={s.container}>
         <Logo />
+        {children}
       </div>
     </header>
   );

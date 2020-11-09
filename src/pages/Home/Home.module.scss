@@ -1,10 +1,22 @@
 @import "../../styles/bootstrap";
 .root {
   display: flex;
+  min-height: 100%;
+  overflow: hidden;
 }
 
-.left,
+.container {
+  @include container;
+  display: flex;
+  min-height: 100%;
+  align-items: center;
+}
+
+.left {
+  width: 40%;
+  padding: $gutter;
+}
 .right {
-  width: 50%;
+  width: 60%;
   padding: $gutter;
 }
