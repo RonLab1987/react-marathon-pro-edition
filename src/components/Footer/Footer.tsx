@@ -4,9 +4,9 @@ import s from "./Footer.module.scss";
 
 const Footer: React.FC = () => {
   return (
-    <footer className={s.footer}>
+    <footer className={s.root}>
       <div className={s.container}>
-        Made with{" "}
+        Made with &nbsp;
         <span role="img" aria-label="love">
           🤎
         </span>

@@ -1,0 +1,36 @@
+@import "../../styles/bootstrap";
+
+.root {
+  flex-grow: 1;
+  height: 100%;
+  padding-bottom: $footer-height + $gutter / 2;
+  overflow: hidden;
+  z-index: 1;
+
+  &.accent {
+    @include background-gradient("third");
+  }
+
+  &.dark {
+    @include background-color("dark");
+  }
+
+  &.light {
+    @include background-gradient("grey");
+  }
+
+  &.danger {
+    @include background-color("danger");
+  }
+}
+
+.container {
+  @include container;
+  display: flex;
+  min-height: 100%;
+
+  &.center {
+    align-items: center;
+    justify-content: center;
+  }
+}

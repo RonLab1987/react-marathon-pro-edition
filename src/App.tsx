@@ -1,55 +1,60 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import "./styles/global.scss";
 
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-
+import { usePath, useRoutes } from "hookrouter";
 import s from "./App.module.scss";
 
 import Header from "./components/Header";
 import HeaderMenu, { HeaderMenuItem } from "./components/HeaderMenu";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Pokedex from "./pages/Pokedex";
+
+import { routes, path } from "./routes";
+import NotFound from "./pages/NotFound";
+
+const menuTemplate = [
+  {
+    label: "Home",
+    to: path.home,
+  },
+  {
+    label: "Pokédex",
+    to: path.pokedex,
+  },
+];
 
 const App: React.FC = () => {
-  const routes = {
-    home: "/",
-    pokedex: "/pokedex",
-  };
+  const [menuItems, setMenuItems] = useState<HeaderMenuItem[]>(
+    menuTemplate.map(
+      (item, index): HeaderMenuItem => ({
+        id: index,
+        isActive: false,
+        ...item,
+      })
+    )
+  );
+  const match = useRoutes(routes);
+  const currentPath = usePath();
 
-  const menuItems: HeaderMenuItem[] = [
-    {
-      id: 1,
-      label: "Home",
-      to: routes.home,
-    },
-    {
-      id: 2,
-      label: "Pokédex",
-      to: routes.pokedex,
-    },
-  ];
+  useEffect(() => {
+    setMenuItems((state) =>
+      state.map((item) => ({
+        ...item,
+        isActive: item.to === currentPath,
+      }))
+    );
+  }, [currentPath]);
 
   return (
-    <Router>
-      <div className={s.app}>
+    <div className={s.app}>
+      {match ? (
         <Header>
           <HeaderMenu items={menuItems} />
         </Header>
-        <div className={s.contentContainer}>
-          <Switch>
-            <Route path={routes.pokedex}>
-              <Pokedex />
-            </Route>
-            <Route path={routes.home}>
-              <Home />
-            </Route>
-          </Switch>
-        </div>
-        <Footer />
-      </div>
-    </Router>
+      ) : null}
+      {match || <NotFound />}
+      <Footer />
+    </div>
   );
 };
 

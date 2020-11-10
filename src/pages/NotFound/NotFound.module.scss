@@ -1,0 +1,15 @@
+@import "../../styles/bootstrap";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("./assets/404.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.lightText {
+  color: map-get($colors, "white");
+}
