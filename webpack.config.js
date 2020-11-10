@@ -17,6 +17,11 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[hash].js",
   },
+  watch: true,
+  watchOptions: {
+    ignored: /node_modules/,
+    poll: 1000,
+  },
   module: {
     rules: [
       {
@@ -51,7 +56,37 @@ module.exports = {
         issuer: {
           test: /\.[tj]sx?$/,
         },
-        use: ["@svgr/webpack"],
+        use: ["@svgr/webpack", "url-loader"],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name() {
+                if (process.env.NODE_ENV === "development") {
+                  return "[path][name].[ext]";
+                }
+
+                return "[contenthash].[ext]";
+              },
+              outputPath: "images/",
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "fonts/",
+            },
+          },
+        ],
       },
     ],
   },
@@ -65,6 +100,7 @@ module.exports = {
     port: 3000,
     open: true,
     hot: true,
+    historyApiFallback: true,
   },
   devtool: "source-map",
 };
