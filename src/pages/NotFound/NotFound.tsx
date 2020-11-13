@@ -28,4 +28,4 @@ const NotFound: React.FC = () => {
     </PageContainer>
   );
 };
-export default NotFound;
+export default React.memo(NotFound);

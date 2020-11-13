@@ -37,4 +37,4 @@ const Home: React.FC = () => {
     </PageContainer>
   );
 };
-export default Home;
+export default React.memo(Home);

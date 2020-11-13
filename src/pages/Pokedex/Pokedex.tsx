@@ -47,4 +47,4 @@ const Pokedex: React.FC = () => {
     </PageContainer>
   );
 };
-export default Pokedex;
+export default React.memo(Pokedex);
