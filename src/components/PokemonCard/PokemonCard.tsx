@@ -23,7 +23,9 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ summary }) => {
         </div>
         <div className={s.labelWrap}>
           {summary.types.map((type) => (
-            <span className={s.label}>{type}</span>
+            <span className={s.label} key={type}>
+              {type}
+            </span>
           ))}
         </div>
       </div>
@@ -35,4 +37,4 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ summary }) => {
   );
 };
 
-export default PokemonCard;
+export default React.memo(PokemonCard);

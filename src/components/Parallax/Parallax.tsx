@@ -72,4 +72,4 @@ const Parallax = () => {
   );
 };
 
-export default Parallax;
+export default React.memo(Parallax);
