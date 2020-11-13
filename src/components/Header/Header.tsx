@@ -6,7 +6,7 @@ import s from "./Header.module.scss";
 
 const Header: React.FC = ({ children }) => {
   return (
-    <header className={s.header}>
+    <header className={s.root}>
       <div className={s.container}>
         <Logo />
         {children}

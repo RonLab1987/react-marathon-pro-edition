@@ -1,7 +1,14 @@
 @import "../../styles/bootstrap";
+
 .root {
   display: flex;
-  min-height: 100%;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: -$gutter;
+  margin-right: -$gutter;
+}
+
+.col {
+  padding: $gutter / 2 $gutter;
+  width: calc(100% / 3);
 }

@@ -1,12 +1,21 @@
 import React from "react";
+import PageContainer from "../../components/PageContainer";
+import PokemonCard from "../../components/PokemonCard";
+import pokemons from "./data";
+
 import s from "./Pokedex.module.scss";
-import Heading from "../../components/Heading";
 
 const Pokedex: React.FC = () => {
   return (
-    <div className={s.root}>
-      <Heading level={1}>Pokédex page be here soon</Heading>
-    </div>
+    <PageContainer>
+      <div className={s.root}>
+        {pokemons.map((summary) => (
+          <div className={s.col}>
+            <PokemonCard summary={summary} key={summary.id} />
+          </div>
+        ))}
+      </div>
+    </PageContainer>
   );
 };
 export default Pokedex;

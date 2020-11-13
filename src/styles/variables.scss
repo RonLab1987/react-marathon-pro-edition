@@ -11,13 +11,14 @@ $colors: (
   "ice": #a2cff0,
   "fire": #f76545,
   "normal": #76aadb,
-  "posion": #a974bc,
+  "poison": #a974bc,
   "ground": #9b897b,
   "electric": #f7c545,
 );
 
 $gradients: (
   "third": linear-gradient(180deg, map-get($colors, "third") 0%, #f2b807 100%),
+  "grey": linear-gradient(180deg, #ffffff 30.32%, #f5f5f5 100%),
 );
 
 // margins
@@ -62,3 +63,7 @@ $heading-font-weight: (
   "normal": 400,
   "bold": 700,
 );
+
+// grid
+$header-height: 96px;
+$footer-height: 90px;

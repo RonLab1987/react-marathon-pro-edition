@@ -14,6 +14,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "fontsource-karla": "^3.0.5",
+    "hookrouter": "^1.2.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0"
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@svgr/webpack": "^5.4.0",
     "@types/classnames": "^2.2.10",
+    "@types/hookrouter": "^2.2.3",
     "@types/react": "^16.9.54",
     "@types/react-dom": "^16.9.9",
     "@types/react-router-dom": "^5.1.6",

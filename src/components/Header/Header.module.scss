@@ -1,11 +1,13 @@
 @import "../../styles/bootstrap";
 
-.header {
+.root {
   display: flex;
   align-items: center;
-  height: 96px;
+  height: $header-height;
   @include shadow("16");
   @include background-color("third");
+  margin-bottom: -$header-height;
+  z-index: 2;
 }
 
 .container {
