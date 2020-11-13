@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-shadow
 export enum BtnType {
   Primary = "primary",
   Secondary = "secondary",

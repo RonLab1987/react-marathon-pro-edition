@@ -9,7 +9,7 @@ import PageContainer, {
   PageContainerType,
 } from "../../components/PageContainer";
 
-import { path } from "../../routes";
+import { RoutePaths } from "../../routes";
 
 const Home: React.FC = () => {
   return (
@@ -24,7 +24,10 @@ const Home: React.FC = () => {
           abilities
         </Heading>
 
-        <Btn type={BtnType.Primary} onClick={() => navigate(path.pokedex)}>
+        <Btn
+          type={BtnType.Primary}
+          onClick={() => navigate(RoutePaths.Pokedex)}
+        >
           See pokemons
         </Btn>
       </div>
