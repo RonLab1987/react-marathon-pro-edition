@@ -8,7 +8,7 @@ import PageContainer, {
   PageContainerType,
 } from "../../components/PageContainer";
 
-import { path } from "../../routes";
+import { RoutePaths } from "../../routes";
 
 import TeamRocketPng from "./assets/TeamRocket.png";
 
@@ -21,11 +21,11 @@ const NotFound: React.FC = () => {
           <span className={s.lightText}>The rocket team</span> has won this
           time.
         </Heading>
-        <Btn type={BtnType.Accent} onClick={() => navigate(path.home)}>
+        <Btn type={BtnType.Accent} onClick={() => navigate(RoutePaths.Home)}>
           Return
         </Btn>
       </div>
     </PageContainer>
   );
 };
-export default NotFound;
+export default React.memo(NotFound);
