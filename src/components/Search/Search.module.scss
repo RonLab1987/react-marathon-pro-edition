@@ -7,14 +7,14 @@
   height: 3.3125rem;
   border-radius: 1.7rem;
   padding: $gutter / 4 $gutter;
-  background-color: #F2F2F2;
-  @include shadow('16');
+  background-color: #f2f2f2;
+  @include shadow("16");
   outline: none;
   margin-bottom: $gutter;
 
   &:hover,
   &:focus,
   &:active {
-    @include shadow('24');
+    @include shadow("24");
   }
 }

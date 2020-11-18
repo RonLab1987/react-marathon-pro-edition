@@ -4,6 +4,8 @@
   font-family: $heading-font-family;
   margin-bottom: $gutter;
   line-height: $heading-font-line-height;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .h1 {

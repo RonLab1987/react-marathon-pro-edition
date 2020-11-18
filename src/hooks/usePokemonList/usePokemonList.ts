@@ -1,9 +1,6 @@
-import {
-  PokemonListAPIResponse,
-  PokemonListHookRelevantData,
-  PokemonListHookResponse,
-} from "./types";
+import { PokemonListHookRelevantData, PokemonListHookResponse } from "./types";
 import { useAsyncData } from "../useAsyncData";
+import { pokemonRepository } from "../../repositories/PokemonRepository";
 
 export function usePokemonList(): PokemonListHookResponse {
   const asyncData = useAsyncData<PokemonListHookRelevantData>({
@@ -12,22 +9,14 @@ export function usePokemonList(): PokemonListHookResponse {
   });
 
   const getPokemonList = (
-    itemsPerPage: number = 30,
-    page: number = 1
+    name?: string,
+    itemsPerPage?: number,
+    page?: number
   ): void => {
-    const offset = page - 1;
     asyncData.markAsLoading();
-    fetch(
-      `http://zar.hosthot.ru/api/v1/pokemons?limit=${itemsPerPage}${
-        offset > 0 ? `&offset=${offset}` : ""
-      }`
-    )
-      .then((response) =>
-        response.ok
-          ? response.json()
-          : Promise.reject(new Error(response.statusText))
-      )
-      .then(({ total, pokemons, ...data }: PokemonListAPIResponse) => {
+    pokemonRepository
+      .getPokemonList({ name, itemsPerPage, page })
+      .then(({ total, pokemons, ...data }) => {
         asyncData.setData({ total, pokemons });
         asyncData.markAsReady();
       })
@@ -39,6 +28,7 @@ export function usePokemonList(): PokemonListHookResponse {
 
   return {
     isLoading: asyncData.isLoading,
+    isReady: asyncData.isReady,
     isError: asyncData.isError,
     total: asyncData.data.total,
     list: asyncData.data.pokemons,
