@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { debounce } from "lodash";
 import PageContainer, {
   PageContainerType,
 } from "../../components/PageContainer";
@@ -8,15 +9,27 @@ import s from "./Pokedex.module.scss";
 import { PokemonSummary } from "../../domain";
 import { usePokemonList } from "../../hooks/usePokemonList";
 import Heading from "../../components/Heading";
+import Search from "../../components/Search";
 
 const Pokedex: React.FC = () => {
-  const { isLoading, isError, total, list, getPokemonList } = usePokemonList();
+  const {
+    isLoading,
+    isReady,
+    isError,
+    total,
+    list,
+    getPokemonList,
+  } = usePokemonList();
+  const [search, setSearch] = useState<string | undefined>(undefined);
 
-  useEffect(() => {
-    getPokemonList();
-  }, []);
+  useEffect(() => getPokemonList(search), [search]);
 
-  if (isLoading) {
+  const debouncedChangeHandler = debounce<(search: string | undefined) => void>(
+    (search) => setSearch(search),
+    400
+  );
+
+  if (isLoading && !isReady) {
     return (
       <PageContainer center>
         <Heading level={2}>...Loading</Heading>
@@ -37,13 +50,23 @@ const Pokedex: React.FC = () => {
       <Heading level={2}>
         {total} <b>Pokemons</b> for you to choose your favorite
       </Heading>
-      <div className={s.root}>
-        {list.map((summary: PokemonSummary) => (
-          <div className={s.col} key={summary.id}>
-            <PokemonCard summary={summary} />
-          </div>
-        ))}
-      </div>
+
+      <Search
+        placeholder="Find your favorite..."
+        onChange={debouncedChangeHandler}
+      />
+
+      {list.length ? (
+        <div className={s.row}>
+          {list.map((summary: PokemonSummary) => (
+            <div className={s.col} key={summary.id}>
+              <PokemonCard summary={summary} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <Heading level={2}>There is no such pokemon</Heading>
+      )}
     </PageContainer>
   );
 };

@@ -5,11 +5,13 @@ export function useAsyncData<DataType>(
   initialData: DataType
 ): AsyncDataHookMixin<DataType> {
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isReady, setIsReady] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [data, setData] = useState<DataType>(initialData);
 
   return {
     isLoading,
+    isReady,
     isError,
     data,
     markAsLoading: () => {
@@ -18,10 +20,12 @@ export function useAsyncData<DataType>(
     },
     markAsReady: () => {
       setIsLoading(false);
+      setIsReady(true);
       setIsError(false);
     },
     markAsError: () => {
       setIsLoading(false);
+      setIsReady(true);
       setIsError(true);
     },
     setData: (data: DataType) => {

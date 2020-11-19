@@ -1,11 +1,12 @@
 @import "../../styles/bootstrap";
 
-.root {
+.row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin-left: -$gutter;
   margin-right: -$gutter;
+  min-height: 100%;
 }
 
 .col {
