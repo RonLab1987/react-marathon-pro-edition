@@ -18,6 +18,9 @@ export type GetPokemonList = (
   params: GetPokemonListRequestParams
 ) => Promise<GetPokemonListResponse>;
 
+export type GetPokemonDetails = (id: number) => Promise<PokemonSummary>;
+
 export interface PokemonRepository {
   getPokemonList: GetPokemonList;
+  getPokemonDetails: GetPokemonDetails;
 }
