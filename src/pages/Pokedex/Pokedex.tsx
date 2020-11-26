@@ -24,7 +24,11 @@ const Pokedex: React.FC = () => {
   } = usePokemonList();
   const [search, setSearch] = useState<string | undefined>(undefined);
 
-  useEffect(() => getPokemonList(search), [search]);
+  useEffect(() => {
+    getPokemonList(search).catch((error) => {
+      throw error;
+    });
+  }, [search]);
 
   const debouncedChangeHandler = debounce<(search: string | undefined) => void>(
     (search) => setSearch(search),

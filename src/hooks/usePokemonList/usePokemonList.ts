@@ -1,37 +1,29 @@
-import { PokemonListHookRelevantData, PokemonListHookResponse } from "./types";
+import {
+  GetPokemonList,
+  PokemonListHookRelevantData,
+  PokemonListHookResponse,
+} from "./types";
 import { useAsyncData } from "../useAsyncData";
 import { pokemonRepository } from "../../repositories/PokemonRepository";
 
 export function usePokemonList(): PokemonListHookResponse {
-  const asyncData = useAsyncData<PokemonListHookRelevantData>({
-    total: 0,
-    pokemons: [],
-  });
-
-  const getPokemonList = (
+  const getPokemonListHandler: GetPokemonList = (
     name?: string,
     itemsPerPage?: number,
     page?: number
-  ): void => {
-    asyncData.markAsLoading();
-    pokemonRepository
-      .getPokemonList({ name, itemsPerPage, page })
-      .then(({ total, pokemons, ...data }) => {
-        asyncData.setData({ total, pokemons });
-        asyncData.markAsReady();
-      })
-      .catch((error) => {
-        asyncData.markAsError();
-        throw error;
-      });
-  };
+  ) => pokemonRepository.getPokemonList({ name, itemsPerPage, page });
+
+  const asyncData = useAsyncData<
+    PokemonListHookRelevantData | null,
+    GetPokemonList
+  >(null, getPokemonListHandler);
 
   return {
     isLoading: asyncData.isLoading,
     isReady: asyncData.isReady,
     isError: asyncData.isError,
-    total: asyncData.data.total,
-    list: asyncData.data.pokemons,
-    getPokemonList,
+    total: asyncData.data?.total || 0,
+    list: asyncData.data?.pokemons || [],
+    getPokemonList: asyncData.getData,
   };
 }
