@@ -9,17 +9,17 @@ import Header from "./components/Header";
 import HeaderMenu, { HeaderMenuItem } from "./components/HeaderMenu";
 import Footer from "./components/Footer";
 
-import { routes, RoutePaths } from "./routes";
+import { routes, routePaths } from "./routes";
 import NotFound from "./pages/NotFound";
 
 const menuTemplate = [
   {
     label: "Home",
-    to: RoutePaths.Home,
+    to: routePaths.Home,
   },
   {
     label: "Pokédex",
-    to: RoutePaths.Pokedex,
+    to: routePaths.Pokedex,
   },
 ];
 

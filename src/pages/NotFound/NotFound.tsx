@@ -8,7 +8,7 @@ import PageContainer, {
   PageContainerType,
 } from "../../components/PageContainer";
 
-import { RoutePaths } from "../../routes";
+import { routePaths } from "../../routes";
 
 import TeamRocketPng from "./assets/TeamRocket.png";
 
@@ -21,7 +21,7 @@ const NotFound: React.FC = () => {
           <span className={s.lightText}>The rocket team</span> has won this
           time.
         </Heading>
-        <Btn type={BtnType.Accent} onClick={() => navigate(RoutePaths.Home)}>
+        <Btn type={BtnType.Accent} onClick={() => navigate(routePaths.Home)}>
           Return
         </Btn>
       </div>

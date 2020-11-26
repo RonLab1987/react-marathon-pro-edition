@@ -45,6 +45,7 @@ $shadows: (
 
 // font
 $base-font-size: 16px;
+$base-font-color: map-get($colors, "dark");
 $base-font-line-height: 1.5;
 $base-font-family: "Karla", "Sans-serif";
 
