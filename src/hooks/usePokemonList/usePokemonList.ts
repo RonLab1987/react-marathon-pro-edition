@@ -1,12 +1,12 @@
 import {
   GetPokemonList,
   PokemonListHookRelevantData,
-  PokemonListHookResponse,
+  PokemonListHookMixin,
 } from "./types";
 import { useAsyncData } from "../useAsyncData";
 import { pokemonRepository } from "../../repositories/PokemonRepository";
 
-export function usePokemonList(): PokemonListHookResponse {
+export function usePokemonList(): PokemonListHookMixin {
   const getPokemonListHandler: GetPokemonList = (
     name?: string,
     itemsPerPage?: number,

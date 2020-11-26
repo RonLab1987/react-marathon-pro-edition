@@ -3,7 +3,9 @@ import { AsyncDataHookMixin } from "./types";
 
 export function useAsyncData<
   DataType,
-  GetDataHandlerType extends (...args: any) => Promise<DataType>
+  GetDataHandlerType extends (...args: any) => Promise<DataType> = (
+    ...args: any
+  ) => Promise<DataType>
 >(
   initialData: DataType,
   getDataHandler: GetDataHandlerType
@@ -50,22 +52,5 @@ export function useAsyncData<
     isError,
     data,
     getData: getData as GetDataHandlerType,
-    // markAsLoading: () => {
-    //   setIsError(false);
-    //   setIsLoading(true);
-    // },
-    // markAsReady: () => {
-    //   setIsLoading(false);
-    //   setIsReady(true);
-    //   setIsError(false);
-    // },
-    // markAsError: () => {
-    //   setIsLoading(false);
-    //   setIsReady(true);
-    //   setIsError(true);
-    // },
-    // setData: (data: DataType) => {
-    //   setData(data);
-    // },
   };
 }

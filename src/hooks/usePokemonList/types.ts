@@ -11,7 +11,7 @@ export interface GetPokemonList {
   >;
 }
 
-export interface PokemonListHookResponse {
+export interface PokemonListHookMixin {
   isLoading: boolean;
   isReady: boolean;
   isError: boolean;
