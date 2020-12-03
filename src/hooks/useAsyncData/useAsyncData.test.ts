@@ -14,10 +14,13 @@ describe("useAsyncData hook ", () => {
     const { result } = renderHook(() =>
       useAsyncData<string>(data, () => Promise.resolve(""))
     );
-    expect(result.current.isLoading).toBe(true);
-    expect(result.current.isReady).toBe(false);
-    expect(result.current.isError).toBe(false);
-    expect(result.current.data).toBe(data);
+    const { getData, ...state } = result.current;
+    expect(state).toEqual({
+      isLoading: true,
+      isReady: false,
+      isError: false,
+      data,
+    });
   });
 
   test("has valid mixin state after successfully fetch data", async () => {
@@ -27,10 +30,13 @@ describe("useAsyncData hook ", () => {
     );
     result.current.getData();
     await waitForNextUpdate();
-    expect(result.current.isLoading).toBe(false);
-    expect(result.current.isReady).toBe(true);
-    expect(result.current.isError).toBe(false);
-    expect(result.current.data).toBe(data);
+    const { getData, ...state } = result.current;
+    expect(state).toEqual({
+      isLoading: false,
+      isReady: true,
+      isError: false,
+      data,
+    });
   });
 
   test("has valid mixin state after failed fetch data", async () => {
@@ -40,9 +46,12 @@ describe("useAsyncData hook ", () => {
     );
     result.current.getData().catch((e) => {});
     await waitForNextUpdate();
-    expect(result.current.isLoading).toBe(false);
-    expect(result.current.isReady).toBe(true);
-    expect(result.current.isError).toBe(true);
-    expect(result.current.data).toBe(data);
+    const { getData, ...state } = result.current;
+    expect(state).toEqual({
+      isLoading: false,
+      isReady: true,
+      isError: true,
+      data,
+    });
   });
 });
