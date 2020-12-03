@@ -5,11 +5,17 @@ export interface PokemonListHookRelevantData {
   pokemons: PokemonSummary[];
 }
 
-export interface PokemonListHookResponse {
+export interface GetPokemonList {
+  (name?: string, itemsPerPage?: number, page?: number): Promise<
+    PokemonListHookRelevantData
+  >;
+}
+
+export interface PokemonListHookMixin {
   isLoading: boolean;
   isReady: boolean;
   isError: boolean;
   total: number;
   list: PokemonSummary[];
-  getPokemonList: (name?: string, itemsPerPage?: number, page?: number) => void;
+  getPokemonList: GetPokemonList;
 }

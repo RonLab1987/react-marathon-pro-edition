@@ -13,6 +13,7 @@
   cursor: pointer;
   transition: all ease-in-out 0.15s;
   min-height: 200px;
+  color: $base-font-color;
 
   &:hover {
     transform: scale(1.03);

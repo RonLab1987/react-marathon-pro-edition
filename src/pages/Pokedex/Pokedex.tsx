@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { debounce } from "lodash";
+import { A } from "hookrouter";
 import PageContainer, {
   PageContainerType,
 } from "../../components/PageContainer";
@@ -10,6 +11,7 @@ import { PokemonSummary } from "../../domain";
 import { usePokemonList } from "../../hooks/usePokemonList";
 import Heading from "../../components/Heading";
 import Search from "../../components/Search";
+import { routePaths } from "../../routes";
 
 const Pokedex: React.FC = () => {
   const {
@@ -22,7 +24,11 @@ const Pokedex: React.FC = () => {
   } = usePokemonList();
   const [search, setSearch] = useState<string | undefined>(undefined);
 
-  useEffect(() => getPokemonList(search), [search]);
+  useEffect(() => {
+    getPokemonList(search).catch((error) => {
+      throw error;
+    });
+  }, [search]);
 
   const debouncedChangeHandler = debounce<(search: string | undefined) => void>(
     (search) => setSearch(search),
@@ -60,7 +66,9 @@ const Pokedex: React.FC = () => {
         <div className={s.row}>
           {list.map((summary: PokemonSummary) => (
             <div className={s.col} key={summary.id}>
-              <PokemonCard summary={summary} />
+              <A href={routePaths.PokemonDetails(summary.id)}>
+                <PokemonCard summary={summary} />
+              </A>
             </div>
           ))}
         </div>

@@ -1,10 +1,7 @@
-export interface AsyncDataHookMixin<DataType> {
+export interface AsyncDataHookMixin<DataType, GetDataHandlerType> {
   isLoading: boolean;
   isError: boolean;
   isReady: boolean;
   data: DataType;
-  markAsLoading: () => void;
-  markAsReady: () => void;
-  markAsError: () => void;
-  setData: (data: DataType) => void;
+  getData: GetDataHandlerType;
 }
